@@ -13,7 +13,7 @@ function recipeUrl(slug){return sitePrefix()+`recipes/${slug}.html`;}
 function stars(r){return '★'.repeat(Math.round(r))+` <span class="muted">(${r})</span>`;}
 function card(r){
  return `<article class="card">
-   <a href="${recipeUrl(r.slug)}"><div class="card-img">${r.emoji}</div></a>
+   <a href="${recipeUrl(r.slug)}"><div class="card-img"><img src="${sitePrefix()}assets/images/${r.slug}.svg" alt="${esc(r.title)}" loading="lazy"></div></a>
    <div class="card-body">
     <div class="rating">${stars(r.rating)} · ${r.reviews} reviews</div>
     <h3><a href="${recipeUrl(r.slug)}">${esc(r.title)}</a></h3>
@@ -43,7 +43,7 @@ function initHome(){
  renderCards([...RECIPES].sort((a,b)=>b.rating-a.rating).slice(0,4),'popular');
  renderCards([...RECIPES].sort((a,b)=>b.trend-a.trend).slice(0,4),'latest');
  const t=document.getElementById('trending'); if(t)t.innerHTML=[...RECIPES].sort((a,b)=>b.trend-a.trend).slice(0,6).map((r,i)=>`<a class="trend" href="${recipeUrl(r.slug)}"><span class="rank">${i+1}</span><span class="trend-emoji">${r.emoji}</span><span><b>${esc(r.title)}</b><small class="muted" style="display:block">${esc(r.category)} · ${r.time} min</small></span><span class="trend-score">${r.trend}</span></a>`).join('');
- const c=document.getElementById('categories'); if(c)c.innerHTML=CATEGORIES.map(x=>`<a class="cat" href="/search.html?category=${encodeURIComponent(x.name)}"><span>${x.emoji}</span><small>${x.name}</small></a>`).join('');
+ const c=document.getElementById('categories'); if(c)c.innerHTML=CATEGORIES.map(x=>`<a class="cat" href="${sitePrefix()}search.html?category=${encodeURIComponent(x.name)}"><span>${x.emoji}</span><small>${x.name}</small></a>`).join('');
  initCommon();
 }
 function initSearch(){
