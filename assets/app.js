@@ -3,17 +3,25 @@ const RECIPES=[{"slug": "crispy-garlic-chicken", "title": "Crispy Garlic Chicken
 const CATEGORIES=[{"name": "Chicken", "emoji": "🍗"}, {"name": "Beef", "emoji": "🥩"}, {"name": "Seafood", "emoji": "🐟"}, {"name": "Vegetarian", "emoji": "🥬"}, {"name": "Vegan", "emoji": "🌱"}, {"name": "Pasta", "emoji": "🍝"}, {"name": "Desserts", "emoji": "🍰"}, {"name": "Air Fryer", "emoji": "🫕"}, {"name": "Breakfast", "emoji": "🍳"}, {"name": "Baking", "emoji": "🥖"}, {"name": "Soups", "emoji": "🍲"}, {"name": "Salads", "emoji": "🥗"}, {"name": "Quick & Easy", "emoji": "⚡"}, {"name": "Healthy", "emoji": "🥗"}];
 
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-function sitePrefix(){
+function siteRoot(){
+ const marker='/kitchen-co-recipes/';
  const p=location.pathname;
- if(p.includes('/recipes/')) return '../';
- if(p.includes('/admin/')) return '../';
- return './';
+ const i=p.indexOf(marker);
+ return i>=0 ? p.slice(0,i)+marker : '/kitchen-co-recipes/';
 }
-function recipeUrl(slug){return sitePrefix()+`recipes/${slug}.html`;}
+function sitePrefix(){
+ return location.pathname.includes('/recipes/') || location.pathname.includes('/admin/') ? '../' : './';
+}
+function recipeUrl(slug){
+ return siteRoot()+`recipes/${slug}.html`;
+}
+function searchUrl(){
+ return siteRoot()+'search.html';
+}
 function stars(r){return '★'.repeat(Math.round(r))+` <span class="muted">(${r})</span>`;}
 function card(r){
  return `<article class="card">
-   <a href="${recipeUrl(r.slug)}"><div class="card-img"><img src="${sitePrefix()}assets/images/${r.slug}.svg" alt="${esc(r.title)}" loading="lazy"></div></a>
+   <a href="${recipeUrl(r.slug)}"><div class="card-img"><img src="${siteRoot()}assets/images/${r.slug}.svg" alt="${esc(r.title)}" loading="lazy"></div></a>
    <div class="card-body">
     <div class="rating">${stars(r.rating)} · ${r.reviews} reviews</div>
     <h3><a href="${recipeUrl(r.slug)}">${esc(r.title)}</a></h3>
@@ -43,7 +51,7 @@ function initHome(){
  renderCards([...RECIPES].sort((a,b)=>b.rating-a.rating).slice(0,4),'popular');
  renderCards([...RECIPES].sort((a,b)=>b.trend-a.trend).slice(0,4),'latest');
  const t=document.getElementById('trending'); if(t)t.innerHTML=[...RECIPES].sort((a,b)=>b.trend-a.trend).slice(0,6).map((r,i)=>`<a class="trend" href="${recipeUrl(r.slug)}"><span class="rank">${i+1}</span><span class="trend-emoji">${r.emoji}</span><span><b>${esc(r.title)}</b><small class="muted" style="display:block">${esc(r.category)} · ${r.time} min</small></span><span class="trend-score">${r.trend}</span></a>`).join('');
- const c=document.getElementById('categories'); if(c)c.innerHTML=CATEGORIES.map(x=>`<a class="cat" href="${sitePrefix()}search.html?category=${encodeURIComponent(x.name)}"><span>${x.emoji}</span><small>${x.name}</small></a>`).join('');
+ const c=document.getElementById('categories'); if(c)c.innerHTML=CATEGORIES.map(x=>`<a class="cat" href="${searchUrl()}?category=${encodeURIComponent(x.name)}"><span>${x.emoji}</span><small>${x.name}</small></a>`).join('');
  initCommon();
 }
 function initSearch(){
@@ -55,7 +63,7 @@ function initSearch(){
    const a=RECIPES.filter(r=>(!q||[r.title,r.description,r.category,...r.tags].join(' ').toLowerCase().includes(q))&&(!cat||r.category===cat));
    count.textContent=`${a.length} recipe${a.length===1?'':'s'} found`; grid.innerHTML=a.length?a.map(card).join(''):`<div class="empty">No recipes found. Try another ingredient, category or recipe name.</div>`;
  }
- document.getElementById('searchForm').onsubmit=e=>{e.preventDefault();run();history.replaceState(null,'',`search.html?q=${encodeURIComponent(input.value)}${filter.value?'&category='+encodeURIComponent(filter.value):''}`)};
+ document.getElementById('searchForm').onsubmit=e=>{e.preventDefault();run();history.replaceState(null,'',`${searchUrl()}?q=${encodeURIComponent(input.value)}${filter.value?'&category='+encodeURIComponent(filter.value):''}`)};
  filter.onchange=run; run(); initCommon();
 }
 function initRecipe(){
