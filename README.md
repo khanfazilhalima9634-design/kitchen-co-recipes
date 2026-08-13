@@ -34,3 +34,7 @@ Upload the folder to GitHub Pages, Cloudflare Pages, Netlify, or another static 
 
 ## SEO
 Each recipe page includes title/description and Recipe structured data. Expand each recipe with genuinely original content, unique photos, author information, FAQs and internal links before publishing at scale.
+
+
+## GitHub Pages
+This build uses relative asset and page paths so it works when hosted at `/kitchen-co-recipes/` as a GitHub Pages project site.

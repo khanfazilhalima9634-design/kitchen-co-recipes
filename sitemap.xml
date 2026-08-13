@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://YOUR-DOMAIN.example/index.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/search.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/crispy-garlic-chicken.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/honey-garlic-salmon.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/creamy-tomato-pasta.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/air-fryer-chicken-wings.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/easy-banana-bread.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/classic-chocolate-brownies.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/high-protein-breakfast-bowl.html</loc></url>
-<url><loc>https://YOUR-DOMAIN.example/recipes/garlic-butter-shrimp.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/search.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/honey-garlic-salmon.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/air-fryer-chicken-wings.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/garlic-butter-shrimp.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/classic-chocolate-brownies.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/easy-banana-bread.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/creamy-tomato-pasta.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/crispy-garlic-chicken.html</loc></url>
+  <url><loc>https://YOUR-USERNAME.github.io/kitchen-co-recipes/recipes/high-protein-breakfast-bowl.html</loc></url>
 </urlset>

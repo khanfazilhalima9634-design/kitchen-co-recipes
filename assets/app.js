@@ -3,7 +3,13 @@ const RECIPES=[{"slug": "crispy-garlic-chicken", "title": "Crispy Garlic Chicken
 const CATEGORIES=[{"name": "Chicken", "emoji": "🍗"}, {"name": "Beef", "emoji": "🥩"}, {"name": "Seafood", "emoji": "🐟"}, {"name": "Vegetarian", "emoji": "🥬"}, {"name": "Vegan", "emoji": "🌱"}, {"name": "Pasta", "emoji": "🍝"}, {"name": "Desserts", "emoji": "🍰"}, {"name": "Air Fryer", "emoji": "🫕"}, {"name": "Breakfast", "emoji": "🍳"}, {"name": "Baking", "emoji": "🥖"}, {"name": "Soups", "emoji": "🍲"}, {"name": "Salads", "emoji": "🥗"}, {"name": "Quick & Easy", "emoji": "⚡"}, {"name": "Healthy", "emoji": "🥗"}];
 
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
-function recipeUrl(slug){return `/recipes/${slug}.html`;}
+function sitePrefix(){
+ const p=location.pathname;
+ if(p.includes('/recipes/')) return '../';
+ if(p.includes('/admin/')) return '../';
+ return './';
+}
+function recipeUrl(slug){return sitePrefix()+`recipes/${slug}.html`;}
 function stars(r){return '★'.repeat(Math.round(r))+` <span class="muted">(${r})</span>`;}
 function card(r){
  return `<article class="card">
