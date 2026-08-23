@@ -21,7 +21,7 @@ function searchUrl(){
 function stars(r){return '★'.repeat(Math.round(r))+` <span class="muted">(${r})</span>`;}
 function card(r){
  return `<article class="card">
-   <a href="${recipeUrl(r.slug)}"><div class="card-img"><img src="${siteRoot()}assets/images/${r.slug}.svg" alt="${esc(r.title)}" loading="lazy"></div></a>
+   <a href="${recipeUrl(r.slug)}"><div class="card-img"><img src="${siteRoot()}assets/images/${r.slug}.jpg" alt="${esc(r.title)}" loading="lazy"></div></a>
    <div class="card-body">
     <div class="rating">${stars(r.rating)} · ${r.reviews} reviews</div>
     <h3><a href="${recipeUrl(r.slug)}">${esc(r.title)}</a></h3>
